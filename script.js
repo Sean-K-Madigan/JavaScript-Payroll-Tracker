@@ -4,16 +4,65 @@ const addEmployeesBtn = document.querySelector('#add-employees-btn');
 // Collect employee data
 const collectEmployees = function() {
   // TODO: Get user input to create and return an array of employee objects
+  const employeesArray = [];
+  
+  while (true) {
+    const firstName = prompt("Employee first name");
+    const lastName = prompt("Employee last name");
+    let salary = parseFloat(prompt("Employee salary"));
+
+    const employeeInfo = {
+      firstName: firstName,
+      lastName: lastName,
+      salary: salary,
+    };
+  
+  
+    employeesArray.push(employeeInfo);
+
+    const addAnother = confirm("Would you like to add another employee?");
+
+    if (!addAnother) {
+      break;
+    }
+  }
+
+  return employeesArray;
 }
+
 
 // Display the average salary
 const displayAverageSalary = function(employeesArray) {
   // TODO: Calculate and display the average salary
+  let sum = 0;
+  let count = 0;
+
+  for (let i = 0; i < employeesArray.length; i++) {
+
+    if (!isNaN(employeesArray[i][2])) {
+      sum += parseFloat(employeesArray[i][columnIndex]);
+      count++;
+    }
+  }
+
+  const averageSalary = count > 0 ? sum / count : 0;
+
+  return averageSalary; 
+  
 }
+
 
 // Select a random employee
 const getRandomEmployee = function(employeesArray) {
   // TODO: Select and display a random employee
+  const length = employeesArray.length;
+
+  const randomIndex = Math.floor(Math.random() * length);
+
+  const randomName = employeesArray[randomIndex][0];
+
+  return randomName;
+
 }
 
 /*
@@ -28,6 +77,7 @@ const displayEmployees = function(employeesArray) {
   const employeeTable = document.querySelector('#employee-table');
 
   // Clear the employee table
+  // Removing this line will keep th employee data and allow you to add more and more employees.
   employeeTable.innerHTML = '';
 
   // Loop through the employee data and create a row for each employee
