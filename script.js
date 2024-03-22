@@ -17,7 +17,6 @@ const collectEmployees = function() {
       salary: salary,
     };
   
-  
     employeesArray.push(employeeInfo);
 
     const addAnother = confirm("Would you like to add another employee?");
@@ -28,27 +27,30 @@ const collectEmployees = function() {
   }
 
   return employeesArray;
+
 }
 
 
 // Display the average salary
 const displayAverageSalary = function(employeesArray) {
   // TODO: Calculate and display the average salary
+  
   let sum = 0;
   let count = 0;
-
+  
   for (let i = 0; i < employeesArray.length; i++) {
-
-    if (!isNaN(employeesArray[i][2])) {
-      sum += parseFloat(employeesArray[i][columnIndex]);
+    
+    if (!isNaN(employeesArray[i].salary)) {
+      sum += parseFloat(employeesArray[i].salary);
       count++;
     }
   }
-
+  
   const averageSalary = count > 0 ? sum / count : 0;
 
-  return averageSalary; 
+  console.log(`The average salary among these employees is $ ${averageSalary}.`);
   
+  return averageSalary; 
 }
 
 
@@ -59,10 +61,12 @@ const getRandomEmployee = function(employeesArray) {
 
   const randomIndex = Math.floor(Math.random() * length);
 
-  const randomName = employeesArray[randomIndex][0];
+  const randomFirstName = employeesArray[randomIndex].firstName;
+  const randomLastName = employeesArray[randomIndex].lastName;
 
-  return randomName;
+  console.log(`Our random employee is ${randomFirstName} ${randomLastName}!`);
 
+  return;
 }
 
 /*
